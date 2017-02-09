@@ -1,18 +1,17 @@
-.catalog:
+version: 2
+catalog:
   name: Drone
-  version: 0.5-rancher2
+  version: 0.5.0
+  upgrade_from: 0.5.0
   description: |
-    Drone CI Server
+    Drone CI Server ref http://readme.drone.io/admin/installation-guide/
   questions:
     - variable: drone_open
       label: Open registrion
       description: |
         Are users able to self register
       required: true
-      type: enum
-      options:
-        - "Yes"
-        - "No"
+      type: boolean
     - variable: drone_secret
       label: Secret to be used between the server and agents
       description: Enter the Secret to be used
@@ -26,12 +25,10 @@
     - variable: drone_github
       label: Enable github
       description: |
-        Enable github
+        Enable github ref http://readme.drone.io/admin/setup-github/
       required: true
-      type: enum
-      options:
-        - "Yes"
-        - "No"
+      default: true
+      type: boolean
     - variable: drone_github_client
       label: Github client
       description: client key from github
@@ -42,10 +39,96 @@
       description: secret key from github
       type: string
       required: false
+    - variable: drone_bitbucket
+      label: Enable bitbucket
+      description: |
+        Enable bitbucket ref http://readme.drone.io/admin/setup-bitbucket/
+      required: true
+      type: boolean
+      default: false
+    - variable: drone_bitbucket_client
+      label: bitbucket client
+      description: client key from bitbucket
+      type: string
+      required: false
+    - variable: drone_bitbucket_secret
+      label: Bitbucket secret
+      description: secret key from bitbucket
+      type: string
+      required: false
+    - variable: drone_stash
+      label: Enable Stash/Bitbucket server
+      description: |
+        Enable bitbucket ref http://readme.drone.io/admin/setup-bitbuket-server/
+      required: true
+      type: boolean
+      default: false
+    - variable: drone_stash_git_username
+      label: Git username
+      description: Username that can clone repos
+      type: string
+      required: false
+    - variable: drone_stash_git_password
+      label: Git Password
+      description: Password for the username that can clone repos
+      type: string
+      required: false
+    - variable: drone_stash_consumer_key
+      label: Stash/Bitbucket server consumer key
+      description: Consumber key from the incoming link
+      type: string
+      required: false
+    - variable: drone_stash_consumer_rsa_string
+      label: Stash/Bitbucket private key
+      description: Private key for the public key added to Stash/Bitbucket
+      type: string
+      required: false
+    - variable: drone_stash_url
+      label: Stash/Bitbucket URL
+      description: URL to the git server
+      type: string
+      required: false
+    - variable: drone_gogs
+      label: Enable gogs server
+      description: |
+        Enable gogs ref http://readme.drone.io/admin/setup-gogs/
+      required: true
+      type: boolean
+      default: false
+    - variable: drone_gogs_url
+      label: Gogs url
+      description: Gogs server url
+      type: string
+      required: false
+    - variable: drone_gitlab
+      label: Enable gitlab server
+      description: |
+        Enable gitlab ref http://readme.drone.io/admin/setup-gitlab/
+      required: true
+      type: boolean
+      default: false
+    - variable: drone_gitlab_client
+      label: Gitlab client
+      description: client key from Gitlab
+      type: string
+      required: false
+    - variable: drone_gitlab_secret
+      label: Gitlab secret
+      description: secret key from Gitlabl
+      type: string
+      required: false
+    - variable: drone_gitlab_url
+      label: Gitlab url
+      description: Gitlab server url
+      type: string
+      required: false
+
     - variable: database_driver
       label: Database Driver
-      description: What database to use
-      type: string
+      description: What database to use (will use sqlite by default mounted at -/var/lib/drone/)
+      type: enum
+        - "mysql"
+        - "postgres"
       required: false
     - variable: database_link
       label: Database Link
