@@ -1,0 +1,39 @@
+version: '2'
+services:
+  dronedb:
+    image: rancher/external-service
+  agent:
+    image: drone/drone:0.5
+    environment:
+      DRONE_SERVER: ws://drone:8000/ws/broker
+      DRONE_SECRET: ${drone_secret}
+    stdin_open: true
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    tty: true
+    links:
+    - drone:drone
+    command:
+    - agent
+    labels:
+      io.rancher.container.pull_image: always
+  drone:
+    image: drone/drone:0.5
+    environment:
+      DRONE_SECRET: ${drone_secret}
+      DRONE_OPEN: ${drone_open}
+      DRONE_ADMIN: ${drone_admins}
+      DRONE_GITHUB: ${drone_github}
+      DRONE_GITHUB_CLIENT: ${drone_github_client}
+      DRONE_GITHUB_SECRET: ${drone_github_secret}
+      DATABASE_DRIVER: ${database_driver}
+      DATABASE_CONFIG: ${database_link}
+      DRONE_ORGS: ${orgs}
+    stdin_open: true
+    tty: true
+    links:
+    - dronedb:dronedb
+    ports:
+    - ${host_port}:8000/tcp
+    labels:
+      io.rancher.container.pull_image: always

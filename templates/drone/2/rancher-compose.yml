@@ -1,0 +1,67 @@
+.catalog:
+  name: Drone
+  version: 0.5-rancher2
+  description: |
+    Drone CI Server
+  questions:
+    - variable: drone_open
+      label: Open registrion
+      description: |
+        Are users able to self register
+      required: true
+      type: enum
+      options:
+        - "Yes"
+        - "No"
+    - variable: drone_secret
+        label: Secret to be used between the server and agents
+      description: Enter the Secret to be used
+      type: string
+      required: true
+    - variable: drone_admins
+      label: Drone Admins
+      description: List of admins for drone coma seperated
+      type: string
+      required: true
+    - variable: drone_github
+      label: Enable github
+      description: |
+        Enable github
+      required: true
+      type: enum
+      options:
+        - "Yes"
+        - "No"
+    - variable: drone_github_client
+      label: Github client
+      description: client key from github
+      type: string
+      required: false
+    - variable: drone_github_secret
+      label: Gihub secret
+      description: secret key from github
+      type: string
+      required: false
+    - variable: database_driver
+      label: Database Driver
+      description: What database to use
+      type: string
+      required: false
+    - variable: database_link
+      label: Database Link
+      description: Database link string to use
+      type: string
+      required: false
+    - variable: orgs
+      label: Organizations
+      description: Comman seperated list of org that can access drone
+      type: string
+      required: false
+
+services:
+  agent:
+    scale: 1
+    start_on_create: true
+  drone:
+    scale: 1
+    start_on_create: true
