@@ -9,4 +9,4 @@ This template creates an instance of Drone CI server 0.5 along with one agent to
 Select the Drone template from the catalog. Provide the following information:
 
 
-See [Drone documentation](http://readme.drone.io/setup/overview/) for complete information.
+See [Drone documentation](http://readme.drone.io/) for complete information.
