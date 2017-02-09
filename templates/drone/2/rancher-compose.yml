@@ -14,7 +14,7 @@
         - "Yes"
         - "No"
     - variable: drone_secret
-        label: Secret to be used between the server and agents
+      label: Secret to be used between the server and agents
       description: Enter the Secret to be used
       type: string
       required: true
