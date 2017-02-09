@@ -11,7 +11,15 @@ catalog:
       description: |
         Are users able to self register
       required: true
+      default: true
       type: boolean
+    - variable: host_port
+      label: Drone server Host Port
+      description: |
+        Port that will be exposed on service creation
+      required: true
+      default: 80
+      type: int
     - variable: drone_secret
       label: Secret to be used between the server and agents
       description: Enter the Secret to be used
@@ -127,6 +135,7 @@ catalog:
       label: Database Driver
       description: What database to use (will use sqlite by default mounted at -/var/lib/drone/)
       type: enum
+      options:
         - "mysql"
         - "postgres"
       required: false
