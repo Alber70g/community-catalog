@@ -1,7 +1,5 @@
 version: '2'
 services:
-  dronedb:
-    image: rancher/external-service
   agent:
     image: drone/drone:0.5
     environment:
