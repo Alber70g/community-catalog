@@ -1,6 +1,6 @@
 .catalog:
   name: Drone
-  version: 0.5-rancher2
+  version: v0.5-dec16-1-rancher2
   description: |
     Drone CI Server
   questions:
