@@ -24,7 +24,7 @@ drone-server:
     - ${database_service}:database
 
 drone-daemon:
-  image: rancher/drone:0.6
+  image: drone/drone:0.6
   net: 'container:drone-server'
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
